@@ -62,7 +62,7 @@ file("src/main/resources/application.properties").withInputStream {
 
 docker {
 	dependsOn build
-	dockerfile file('src/main/java/Dockerfile')
+	dockerfile file('Dockerfile')
 	name imageName
 	files bootJar.outputs
 	buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])
