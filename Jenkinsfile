@@ -4,11 +4,11 @@ pipeline {
         gradle "gradle"
     }
     stages {
-        stage('stop') {
-                 steps {
-                   sh 'docker-compose down'
-                 }
-            }
+//         stage('stop') {
+//                  steps {
+//                    sh 'docker-compose down'
+//                  }
+//             }
 
         stage('Build') {
             steps {
