@@ -16,7 +16,7 @@ pipeline {
 
         stage('deploy') {
              steps {
-               sh 'gradle composeUp'
+               sh "gradle composeUp"
              }
         }
     }
