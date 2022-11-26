@@ -1,6 +1,6 @@
 package com.fmist.post.controllers;
 
-import com.fmist.post.models.PostRequest;
+import com.fmist.post.models.Post;
 import com.fmist.post.models.PostResponse;
 import com.fmist.post.repositories.PostRepository;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +21,12 @@ public class PostController {
     }
 
     @GetMapping("/")
-    List<PostRequest> getPosts() {
+    List<Post> getPosts() {
         return postRepository.findAll();
     }
 
     @PostMapping("/add")
-    ResponseEntity<PostResponse> addPost(@Valid @RequestBody PostRequest postRequest) {
+    ResponseEntity<PostResponse> addPost(@Valid @RequestBody Post postRequest) {
         postRepository.save(postRequest);
         return ResponseEntity.ok(new PostResponse("Success !"));
     }

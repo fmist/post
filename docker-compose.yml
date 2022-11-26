@@ -1,0 +1,26 @@
+version: '3'
+services:
+  rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 'backend'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.0.110:3306/demo_db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 123
+    ports:
+      - "8081:8081"
+
+  react:
+    build:
+      context: src/main/webapp
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    image: 'frontend'
+    depends_on:
+      - rest
+
+
+

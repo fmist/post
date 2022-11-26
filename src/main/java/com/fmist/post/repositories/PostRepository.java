@@ -1,7 +1,7 @@
 package com.fmist.post.repositories;
 
-import com.fmist.post.models.PostRequest;
+import com.fmist.post.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostRepository extends JpaRepository<PostRequest, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 }

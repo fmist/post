@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-public class PostRequest {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
