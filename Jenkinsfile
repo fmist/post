@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        PATH = "$PATH:/opt/homebrew/bin/docker-compose"
+    }
     agent any
     tools {
         gradle "gradle"
@@ -13,7 +16,7 @@ pipeline {
 
         stage('deploy') {
              steps {
-               sh 'docker-compose --version'
+               sh 'docker-compose up'
              }
         }
     }
