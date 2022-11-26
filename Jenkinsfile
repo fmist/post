@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        PATH = "$PATH:/opt/homebrew/bin/docker-compose"
+        PATH = "$PATH:/usr/local/bin/docker-compose"
     }
     agent any
     tools {
