@@ -16,11 +16,6 @@ pipeline {
                 sh "gradle clean build -DskipTests"
             }
         }
-        stage('prepare') {
-            withEnv(["PATH=$PATH:~/.local/bin"]){
-                            sh "bash test.sh"
-                        }
-        }
 
         stage('deploy') {
              steps {
