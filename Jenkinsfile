@@ -1,7 +1,4 @@
 pipeline {
-    environment {
-            PATH = "$PATH:/opt/homebrew/bin/docker-compose"
-        }
     agent any
     tools {
         gradle "gradle"
