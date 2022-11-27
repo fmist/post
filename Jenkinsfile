@@ -1,12 +1,20 @@
 pipeline {
     agent any
+
     tools {
         gradle "gradle"
     }
+
     stages {
-        stage('Build') {
+
+        stage('Get project from github') {
             steps {
                 git 'https://github.com/fmist/post.git'
+            }
+        }
+
+        stage('Build project by gradle') {
+            steps {
                 sh "gradle clean build -DskipTests"
             }
         }
