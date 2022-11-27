@@ -7,10 +7,6 @@ pipeline {
         gradle "gradle"
     }
     stages {
-        stage('Initialize') {
-            def dockerHome = tool "docker"
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
         stage('Build') {
             steps {
                 git 'https://github.com/fmist/post.git'
