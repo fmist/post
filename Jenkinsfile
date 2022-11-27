@@ -16,7 +16,7 @@ pipeline {
 
         stage('deploy') {
              steps {
-               sh "/usr/local/bin/docker-compose up"
+               sh "docker-compose up"
              }
         }
     }
