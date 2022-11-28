@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PostService from "../api/PostService";
-import {IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import {Delete} from "@mui/icons-material";
+import {IconButton} from "@mui/material";
+import {DeleteForever} from "@mui/icons-material";
 
 const MaterialPost = () => {
     const [posts, setPosts] = useState([])
@@ -17,41 +17,40 @@ const MaterialPost = () => {
 
     return (
         <div>
-            <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell align="right">Title</TableCell>
-                            <TableCell align="right">Time</TableCell>
-                            <TableCell align="right">Updated</TableCell>
-                            <TableCell align="right">Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {posts.map((posts) => (
-                            <TableRow
-                                key={posts.id}
-                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {posts.id}
-                                </TableCell>
-                                <TableCell align="right">{posts.title}</TableCell>
-                                <TableCell align="right">{posts.text}</TableCell>
-                                <TableCell align="right">{posts.time}</TableCell>
-                                <TableCell align="right">
+            <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    posts.map((posts) => (
+                            <tr>
+                                <th scope="row">{posts.id}</th>
+                                <td>{posts.title}</td>
+                                <td>{posts.text}</td>
+                                <td>{posts.time}</td>
+                                <td>
                                     <IconButton aria-label="delete"
-                                                size="small"
-                                                onClick={() => PostService.deletePost(posts.id)}>
-                                        <Delete/>
+                                                size="medium"
+                                                onClick={() => PostService.deletePost(posts.id)}
+                                                >
+                                        <DeleteForever
+                                            fontSize="inherit"
+                                        />
                                     </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                                </td>
+                            </tr>
+                        )
+                    )
+                }
+                </tbody>
+            </table>
         </div>
     );
 };
