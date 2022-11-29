@@ -1,10 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import PostService from "../api/PostService";
-import {IconButton} from "@mui/material";
-import {DeleteForever} from "@mui/icons-material";
+import {styled} from '@mui/material/styles';
+import {
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    tableCellClasses,
+    TableContainer,
+    TableHead,
+    TableRow
+} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
-const MaterialPost = () => {
+const PostList = () => {
     const [posts, setPosts] = useState([])
+
+    const StyledTableCell = styled(TableCell)(({theme}) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
+
+    const StyledTableRow = styled(TableRow)(({theme}) => ({
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+        '&:last-child td, &:last-child th': {
+            border: 0,
+        },
+    }));
 
 
     useEffect(() => {
@@ -17,42 +47,41 @@ const MaterialPost = () => {
 
     return (
         <div>
-            <table className="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Text</th>
-                    <th scope="col">Updated</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    posts.map((posts) => (
-                            <tr>
-                                <th scope="row">{posts.id}</th>
-                                <td>{posts.title}</td>
-                                <td>{posts.text}</td>
-                                <td>{posts.time}</td>
-                                <td>
+            <TableContainer component={Paper}>
+                <Table sx={{minWidth: 700}} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Id</StyledTableCell>
+                            <StyledTableCell align="right">Title</StyledTableCell>
+                            <StyledTableCell align="right">Text</StyledTableCell>
+                            <StyledTableCell align="right">Updated</StyledTableCell>
+                            <StyledTableCell align="right">Action</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {posts.map((posts) => (
+                            <StyledTableRow key={posts.id}>
+                                <StyledTableCell component="th" scope="row">
+                                    {posts.id}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">{posts.title}</StyledTableCell>
+                                <StyledTableCell align="right">{posts.text}</StyledTableCell>
+                                <StyledTableCell align="right">{posts.time}</StyledTableCell>
+                                <StyledTableCell align="right">
                                     <IconButton aria-label="delete"
-                                                size="medium"
+                                                color="inherit"
                                                 onClick={() => PostService.deletePost(posts.id)}
-                                                >
-                                        <DeleteForever
-                                            fontSize="inherit"
-                                        />
+                                    >
+                                        <Delete/>
                                     </IconButton>
-                                </td>
-                            </tr>
-                        )
-                    )
-                }
-                </tbody>
-            </table>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 };
 
-export default MaterialPost;
+export default PostList;

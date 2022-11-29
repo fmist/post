@@ -3,7 +3,7 @@ import PostService from "../api/PostService";
 import {Box, Button, Container, TextField} from "@mui/material";
 import {Send} from "@mui/icons-material";
 
-const Input = () => {
+const InputBar = () => {
     const [post, setPost] = useState({
         title: "",
         text: ""
@@ -50,22 +50,22 @@ const Input = () => {
                     </TextField>
                 </Box>
                 <Box mb={2}>
-                    <TextField
+                        <TextField
                         label="Set text"
                         name="text"
                         value={text}
                         helperText={errText}
                         onChange={(e) => setPost({...post, [e.target.name]: e.target.value})}
                     >
-                    </TextField>
+                        </TextField>
                 </Box>
-                <Button
-                    aria-errormessage={errTitle}
-                    className="btn btn-outline-success"
-                    onClick={() => clickAddPost(post)}
-                    variant="contained"
-                    endIcon={<Send/>}
-                    color="info"
+                    <Button
+                        aria-errormessage={errTitle}
+                        className="btn btn-outline-success"
+                        onClick={() => clickAddPost(post)}
+                        variant="contained"
+                        endIcon={<Send/>}
+                        color="info"
                 >Success
                 </Button>
             </form>
@@ -73,4 +73,4 @@ const Input = () => {
     );
 };
 
-export default Input;
+export default InputBar;
